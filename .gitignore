@@ -17,3 +17,4 @@ warnings.txt
 word_count.csv
 labeled_arrays.npz
 stacked_array.npy
+fontsearch.py
