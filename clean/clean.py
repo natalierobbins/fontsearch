@@ -1,23 +1,24 @@
 import pandas as pd
 import re
-import clean.assets as assets
+import assets
 from collections import Counter
 
-styles = pd.read_csv('styles.csv')
-
-
-def pipeline(line):
+def style_pipeline(line):
+    if type(line) == float:
+        return ''
     return \
     final_clean(
         add_modifiers(
             unify(
-                transform_abbreviations (
+                transform_abbreviations(
                     clean_preceeding_hyphen(
                         rm_stopwords(
                             clean_numbers(
                                 clean_modifiers(
                                     clean_punctuation(
-                                        line
+                                        basic(
+                                            line
+                                        )
                                     )
                                 )
                             )
@@ -28,13 +29,46 @@ def pipeline(line):
         )
     )
 
-# stage 1, entire set
+def tag_pipeline(line):
+    if type(line) == float:
+        return ''
+    return \
+    final_clean(
+        split_tags(
+            join_words(
+                unify(
+                    transform(
+                        clean_punctuation( 
+                            basic(
+                                line
+                            ) 
+                        )
+                    )
+                )
+            )
+        )
+    )
+
+def split_tags(s):
+    return ' '.join(s.split(';'))
+
+def join_words(s):
+    s = s.replace('-', '_')
+    s = s.replace(' ', '_')
+    return s
+
+# stage 0
+def basic(s):
+    s = re.sub(r'[^\x00-\x7f]',r'',s) 
+    return s.lower()
+
+# stage 1
 def clean_punctuation(s):
     # clean present punctuation
     s = re.sub(r"[!'(),.]", '', s)
     return s
 
-# stage 2, can perform on entire set at once
+# stage 2
 def clean_modifiers(s):
     for m in assets.modifiers:
         # change to underscore since other hyphens used as style delimiting (ex. hollow-light -> hollow, light)
@@ -46,33 +80,34 @@ def clean_modifiers(s):
     
     return s
 
-# stage 3, can perform on entire set at once
+# stage 3
 def clean_numbers(s):
     s = s.replace('3d', 'three_d') # temporary preservation
     s = re.sub(r'\b\w*\d+\w*\b', '', s)
     return s
     # try to remove roman numerals too
 
-# stage 4, entire set
+# stage 4
 def rm_stopwords(s):
     for stop in assets.stopwords:
         s = re.sub(rf'\b({stop})\b', '', s)
         s = s.replace('  ', ' ')
     return s
 
-# stage 5, line by line
+# stage 5
 def clean_preceeding_hyphen(l):
     l = re.sub(r"^-", '', l)
     l = l.strip()
     return l
 
-# stage 6, line by line
+# stage 6
 def transform_abbreviations(l):
     t = []
     for w in l.split(' '):
         t.append(transform(w))
     return ' '.join(t).strip()
-    
+
+# stage 6 helper  
 def transform(w):
     t = []
     original = w
@@ -84,7 +119,7 @@ def transform(w):
         for a in sorted(abbr.keys(), key=lambda x : len(x), reverse=True):
             # make sure abbr in string without its full version
             # sorted by length so abbr that are subsets of another shouldn't be issue
-            if w[:len(a)] == a and w[:len(abbr[a])] != abbr[a]:
+            if w[:len(a)] == a and original != abbr[a]:
                 # incrememnt transformation
                 t.append(abbr[a])
                 # save stuck comparison
@@ -98,29 +133,37 @@ def transform(w):
     t = " ".join(t).replace('_ ', '_')
     return t
 
-# stage 7, line by line
+# stage 7
 def unify(l):
     u = assets.unifications
     for key in sorted(u.keys(), key=lambda x : len(x), reverse=True):
-        l = l.replace(key, u[key])
+        l = re.sub(rf'(\b|_| ){key}(\b|_| )', f'{u[key]}_', l)
     return l
 
-# stage 8, line by line
+# stage 8
 def add_modifiers(l):
     l = l.split(' ')
     repeats = [f'super_{k}' for k, v in Counter(l).items() if v > 1]
     singles = [k for k in set(l)]
     return ' '.join(set(repeats + singles))
 
+# stage 9
 def final_clean(l):
     l = l.replace('__', '_')
     l = l.replace('-', ' ')
+    l = re.sub(r'_(?=\b)', '', l)
+    l = re.sub(r'\b_', '', l)
     return l.strip()
 
+# TESTS
+# print(tag_pipeline('Brush;All Caps;Textured;Uppercase'))
+# print(final_clean('_groove wide_test'))
+# print(transform('ultra_extobl'))
+# print(unify('xtra_expanded extra_expanded'))
 # print(clean_numbers('3 regular'))
 # print(clean_modifiers('what about superthis\nand ultra this\nand semi-this'))
 # print(add_modifiers('italic bold'))
 # print(unify('small caps bold'))
 # print(rm_stopwords('lit we can testiv iv for all el-harrak.blogspot.com : darrati10@gmail.com'))
 # print(transform_abbreviations("test ital sebdit italmost"))
-print(pipeline('-3 regular sebd hollow-inverse all caps italic italic ii extra bold'))
+# print(pipeline('-3 regular sebd hollow-inverse all caps italic italic ii extra bold'))

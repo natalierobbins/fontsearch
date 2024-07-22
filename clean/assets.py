@@ -66,6 +66,7 @@ abbreviations = {
     'ex': 'expanded',
     'expand': 'expanded',
     # wide
+    'wid': 'wide',
     'wd': 'wide',
     # light
     'lt': 'light',
@@ -76,9 +77,11 @@ abbreviations = {
     'pl': 'paper_light',
     'ul': 'ultra_light',
     # left_italic
+    'lefta': 'left_italic',
     'lta': 'left_italic',
     # super
     'su': 'super_',
+    'sup': 'super_',
     # hairline
     'hl': 'hairline',
     # extra
@@ -87,8 +90,12 @@ abbreviations = {
     'norm': 'normal',
     # condensed
     'cn': 'condensed',
+    'co': 'condensed',
+    'con': 'condensed',
     'cnd': 'condensed',
     'cond': 'condensed',
+    'condense': 'condensed',
+    'condens': 'condensed',
     # regular
     'rg': 'regular',
     'reg': 'regular',
@@ -101,7 +108,30 @@ abbreviations = {
     # small caps
     'sc': 'small_caps',
     # outline
-    'out': 'outline'
+    'ou': 'outline',
+    'ol': 'outline',
+    'out': 'outline',
+    'caps': 'all_caps',
+    # extra
+    'x': 'extra_',
+    'xtra': 'extra_',
+    # nonchanging
+    'bold': 'bold',
+    'italic': 'italic',
+    'normal': 'normal',
+    'condensed': 'condensed',
+    'ultimate': 'ultimate',
+    'black': 'black',
+    'wide': 'wide',
+    'fax': 'fax',
+    'ultra_': 'ultra_',
+    'extra_': 'extra_',
+    'xtra_': 'extra_',
+    'super_': 'super_',
+    'semi_': 'semi_',
+    'demi_': 'demi_',
+    'nrw': 'narrow',
+    'three_d': 'three_d'
 }
 
 unifications = {
@@ -125,11 +155,12 @@ unifications = {
     'smallcaps': 'small_caps',
     'small caps': 'small_caps',
     ' & ': '_and_',
-    'sans': 'sans_serif',
-    'sansserif': 'sans_serif',
-    'sans serif': 'sans_serif',
-    'sans-serif': 'sans_serif',
+    'sansserif': 'sans',
+    'sans serif': 'sans',
+    'sans-serif': 'sans',
     'sci fi': 'sci_fi',
     'scifi': 'sci_fi',
-    'sci-fi': 'sci_fi'
+    'sci-fi': 'sci_fi',
+    'xtra': 'extra',
+    'tilt': 'tilted'
 }
