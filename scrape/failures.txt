@@ -1,0 +1,80 @@
+https://www.fontspace.com/organic-font-f94733 -- Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=126.0.6478.127)
+Stacktrace:
+0   chromedriver                        0x00000001048d6a0c chromedriver + 4385292
+1   chromedriver                        0x00000001048cf318 chromedriver + 4354840
+2   chromedriver                        0x00000001044ecb0c chromedriver + 281356
+3   chromedriver                        0x00000001044e5e9c chromedriver + 253596
+4   chromedriver                        0x00000001044d7a5c chromedriver + 195164
+5   chromedriver                        0x00000001044d8e18 chromedriver + 200216
+6   chromedriver                        0x00000001044d7d78 chromedriver + 195960
+7   chromedriver                        0x00000001044d740c chromedriver + 193548
+8   chromedriver                        0x00000001044d73b8 chromedriver + 193464
+9   chromedriver                        0x00000001044d5198 chromedriver + 184728
+10  chromedriver                        0x00000001044d5b18 chromedriver + 187160
+11  chromedriver                        0x00000001044ef0a0 chromedriver + 290976
+12  chromedriver                        0x0000000104568364 chromedriver + 787300
+13  chromedriver                        0x0000000104567d24 chromedriver + 785700
+14  chromedriver                        0x0000000104523eec chromedriver + 507628
+15  chromedriver                        0x00000001045248c4 chromedriver + 510148
+16  chromedriver                        0x000000010489e3c8 chromedriver + 4154312
+17  chromedriver                        0x00000001048a2e2c chromedriver + 4173356
+18  chromedriver                        0x0000000104883f84 chromedriver + 4046724
+19  chromedriver                        0x00000001048a3718 chromedriver + 4175640
+20  chromedriver                        0x0000000104876f44 chromedriver + 3993412
+21  chromedriver                        0x00000001048c11a8 chromedriver + 4297128
+22  chromedriver                        0x00000001048c1324 chromedriver + 4297508
+23  chromedriver                        0x00000001048cef10 chromedriver + 4353808
+24  libsystem_pthread.dylib             0x000000019976ef94 _pthread_start + 136
+25  libsystem_pthread.dylib             0x0000000199769d34 thread_start + 8
+
+https://www.fontspace.com/classix-font-f14660 -- Message: timeout: Timed out receiving message from renderer: 299.526
+  (Session info: chrome=126.0.6478.127)
+Stacktrace:
+0   chromedriver                        0x0000000102b9ea0c chromedriver + 4385292
+1   chromedriver                        0x0000000102b97318 chromedriver + 4354840
+2   chromedriver                        0x00000001027b4b0c chromedriver + 281356
+3   chromedriver                        0x000000010279e4fc chromedriver + 189692
+4   chromedriver                        0x00000001027bed34 chromedriver + 322868
+5   chromedriver                        0x000000010282feac chromedriver + 786092
+6   chromedriver                        0x00000001027ebeec chromedriver + 507628
+7   chromedriver                        0x00000001027ec8c4 chromedriver + 510148
+8   chromedriver                        0x0000000102b663c8 chromedriver + 4154312
+9   chromedriver                        0x0000000102b6ae2c chromedriver + 4173356
+10  chromedriver                        0x0000000102b4bf84 chromedriver + 4046724
+11  chromedriver                        0x0000000102b6b718 chromedriver + 4175640
+12  chromedriver                        0x0000000102b3ef44 chromedriver + 3993412
+13  chromedriver                        0x0000000102b891a8 chromedriver + 4297128
+14  chromedriver                        0x0000000102b89324 chromedriver + 4297508
+15  chromedriver                        0x0000000102b96f10 chromedriver + 4353808
+16  libsystem_pthread.dylib             0x000000019976ef94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x0000000199769d34 thread_start + 8
+
+https://www.fontspace.com/crack-font-f28422 -- Message: timeout: Timed out receiving message from renderer: 299.672
+  (Session info: chrome=126.0.6478.127)
+Stacktrace:
+0   chromedriver                        0x0000000102b9ea0c chromedriver + 4385292
+1   chromedriver                        0x0000000102b97318 chromedriver + 4354840
+2   chromedriver                        0x00000001027b4b0c chromedriver + 281356
+3   chromedriver                        0x000000010279f7c4 chromedriver + 194500
+4   chromedriver                        0x000000010279f3b8 chromedriver + 193464
+5   chromedriver                        0x000000010279d198 chromedriver + 184728
+6   chromedriver                        0x000000010279dc4c chromedriver + 187468
+7   chromedriver                        0x00000001027abfac chromedriver + 245676
+8   chromedriver                        0x00000001027bf09c chromedriver + 323740
+9   chromedriver                        0x000000010279e294 chromedriver + 189076
+10  chromedriver                        0x00000001027bef50 chromedriver + 323408
+11  chromedriver                        0x000000010282feac chromedriver + 786092
+12  chromedriver                        0x00000001027ebeec chromedriver + 507628
+13  chromedriver                        0x00000001027ec8c4 chromedriver + 510148
+14  chromedriver                        0x0000000102b663c8 chromedriver + 4154312
+15  chromedriver                        0x0000000102b6ae2c chromedriver + 4173356
+16  chromedriver                        0x0000000102b4bf84 chromedriver + 4046724
+17  chromedriver                        0x0000000102b6b718 chromedriver + 4175640
+18  chromedriver                        0x0000000102b3ef44 chromedriver + 3993412
+19  chromedriver                        0x0000000102b891a8 chromedriver + 4297128
+20  chromedriver                        0x0000000102b89324 chromedriver + 4297508
+21  chromedriver                        0x0000000102b96f10 chromedriver + 4353808
+22  libsystem_pthread.dylib             0x000000019976ef94 _pthread_start + 136
+23  libsystem_pthread.dylib             0x0000000199769d34 thread_start + 8
+
