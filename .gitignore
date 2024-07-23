@@ -19,3 +19,15 @@ labeled_arrays.npz
 stacked_array.npy
 fontsearch.py
 */__pycache__
+font_vectors/
+done.txt
+test.txt
+model/*.txt
+metadata/uid_test.csv
+metadata/uid.csv
+metadata/simplified.csv
+model/X.npy
+model/y.npy
+model/encodings.csv
+metadata/trimmed_encodings.csv
+model/fontsearch.hdf5
