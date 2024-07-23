@@ -63,4 +63,4 @@ scrape['tags'] = scrape['tags'].apply(
 
 scrape = scrape.dropna(subset=['style', 'tags'], how='all')
 
-scrape.to_csv('./metadata/fontspace-style-clean.csv')
+scrape.to_csv('./metadata/fontspace-clean.csv')

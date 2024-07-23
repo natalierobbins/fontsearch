@@ -7,11 +7,10 @@ from PIL import Image, ImageFont, ImageDraw
 from dotenv import dotenv_values
 from fontTools.ttLib import TTFont
 from tqdm import tqdm
-import urllib
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
 
 config = { **dotenv_values('.env') }
+
+metadata = pd.read_csv('./metadata/fontspace-clean.csv')
 
 def warn(id, msg):
     with open('./warnings.txt', 'a+') as f:
@@ -58,7 +57,7 @@ def get_ttf(url):
 
 def get_chars(ttf, id=None):
     W, H = (56, 56)
-    r, rows, c, cols = 0, 9, 0, 10
+    r, rows, c, cols = 0, 8, 0, 8
     grid = Image.new('RGB', (W * rows, H * cols), '#ffffff')
     try:
         font = ImageFont.truetype(ttf, int(config['FONT_SIZE']))
@@ -67,7 +66,10 @@ def get_chars(ttf, id=None):
         return
     font_name = "_".join(font.getname())
     if id != None:
-        font_name = id
+        try:
+            font_name = f"{metadata[metadata['id'] == id].index.astype(int)[0]}-{id}"
+        except:
+            font_name = id
     try:
         for character in config['CHARS']:
             _, (offset_x, offset_y) = font.font.getsize(character)
@@ -82,8 +84,8 @@ def get_chars(ttf, id=None):
                 c += 1
                 r = 0
         try:
-            # np.save(f'./img_vectors/{font_name}.npy', np.array(grid))
-            grid.save(f'./fs_imgs/{font_name}.png')
+            np.save(f'./font_vectors/{font_name}.npy', np.array(grid))
+            # grid.save(f'./fs_imgs_v2/{font_name}.png')
         except Exception as e:
             warn(font_name, f"couldn't save -- {e}")
     except Exception as e:
@@ -114,3 +116,5 @@ for file in tqdm(os.listdir('fs-ttfs')):
         filepath = f'/Users/natalierobbins/fontsearch/fs-ttfs/{file}'
         id = filepath[:-4].split('-')[-1].split(' ')[0]
         get_chars(filepath, id)
+        with open('done.txt', 'a+') as f:
+            f.write(f'{file}\n')
