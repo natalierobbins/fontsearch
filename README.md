@@ -10,7 +10,7 @@ Over 65,000 font families were scraped from the free font platform, Font Space. 
 
 ### Font images
 
-Using the .otf/.ttf files for each family and style, 62 characters (A-Z, a-z, 0-9) are represented by (64, 64) arrays, yielding a (62, 64, 64) shape tensor for each .otf/.ttf file.
+Using the .otf/.ttf files for each family and style, 62 characters (A-Z, a-z, 0-9) are represented by (64, 64) arrays, yielding a (62, 64, 64) shape tensor for each .otf/.ttf file. Some files were corrupted or could not be rendered by PILLOW, leaving 87,897 valid font tensors as this stage.
 
 ### Metadata and cleaning
 
@@ -38,6 +38,10 @@ fonts.hdf5
 ```
 
 The "keys" dataset corresponds to the ids found in the metadata.csv and can be used to map to the row index of a given font in the dataset.
+
+### Overview
+
+![alt data pipeline diagram](media/data_pipeline.png)
 
 ## Training
 
