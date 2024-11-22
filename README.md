@@ -26,6 +26,7 @@ There are 806 unique labels, which are represented in the dataset using one-hot 
 
 The final dataset is stored inside of a .hdf5 file with the following structure:
 
+``` bash
 fonts.hdf5
 .
 ├── data
@@ -34,6 +35,7 @@ fonts.hdf5
 └── indexes
     ├── <HDF5 dataset "keys": shape (87645,), type "|S5">
     └── <HDF5 dataset "values": shape (87645,), type "<u4">
+```
 
 The "keys" dataset corresponds to the ids found in the metadata.csv and can be used to map to the row index of a given font in the dataset.
 
