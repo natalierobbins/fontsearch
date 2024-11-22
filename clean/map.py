@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+import uuid
 from collections import Counter
 import clean
 
@@ -35,32 +37,42 @@ scrape['tags'] = scrape['tags'].apply(
     lambda x : clean.tag_pipeline(x)
 )
 
+# scrape = scrape.dropna(subset=['style', 'tags'], how='all')
+
 count = Counter()
 
 for ls in scrape['style'].unique():
-    for label in ls.split(' '):
-        count[label] += 1
+    if type(ls) == str:
+        for label in ls.split('|'):
+            count[label] += 1
 
 for ls in scrape['tags'].unique():
-    for label in ls.split(' '):
-        count[label] += 1
+    if type(ls) == str:
+        for label in ls.split('|'):
+            count[label] += 1
         
-def filter_scrape(line):
+def filter_k_least(line, k):
     final = []
-    line = line.split(' ')
-    for tag in line:
-        if len(tag) > 1 and count[tag] > 5:
-            final.append(tag)
-    return ' '.join(final)
+    if type(line) == str:
+        line = line.split('|')
+        for tag in line:
+            if len(tag) > 1 and count[tag] >= k:
+                final.append(tag)
+        if len(final):
+            return '|'.join(final)
+    return np.nan
 
 scrape['style'] = scrape['style'].apply(
-    lambda x : filter_scrape(x)
+    lambda x : filter_k_least(x, 50)
 )
 
 scrape['tags'] = scrape['tags'].apply(
-    lambda x : filter_scrape(x)
+    lambda x : filter_k_least(x, 50)
 )
 
-scrape = scrape.dropna(subset=['style', 'tags'], how='all')
+# scrape = scrape.dropna(subset=['style', 'tags'], how='all')
+
+scrape['image_id'] = [uuid.uuid4() for _ in range(len(scrape.index))]
+scrape['image_file'] = scrape.apply(lambda r : f'{r["image_id"]}.jpg', axis=1)
 
 scrape.to_csv('./metadata/fontspace-clean.csv')
