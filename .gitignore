@@ -33,3 +33,13 @@ metadata/trimmed_encodings.csv
 model/fontsearch.hdf5
 model/fontsearch.hdf5.tar.gz
 .DS_Store
+dataset/font_jpgs
+dataset/img_identification.py
+dataset/*.txt
+fs_imgs_v2
+*npy
+*memmap
+*h5
+*keras
+*hdf5
+*npy
