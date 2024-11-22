@@ -69,3 +69,15 @@ f = h5py.File('fontsearch.hdf5', 'r')
 # %%
 f['X']
 # %%
+# ran out of memory w/ basic matrix ops, need to normalize np arrays more efficiently
+def batch_normalize(input, output, chunk_size=32):
+    num_batches = len(input) // chunk_size
+    container = np.zeros([chunk_size,448,448], dtype='uint8')
+    for i in tqdm(range(input.shape[0])):
+        if i % chunk_size == 0 and i < (num_batches * chunk_size):
+            container[:] = input[i:i+chunk_size] # read in chunk from input
+            container = container / 255 # normalize
+            output[i:i+chunk_size] = container # write chunk to output
+    # catch stragglers
+    if len(X) % chunk_size != 0:
+        output[(num_batches * chunk_size):len(X)] = input[(num_batches * chunk_size):len(X)] / 255
